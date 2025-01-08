@@ -11,6 +11,7 @@ module SauceDemo {
 	requires org.testng;
 	exports tests to org.testng;
 	requires org.seleniumhq.selenium.support;
+	opens pages to org.seleniumhq.selenium.support;
 	requires io.github.bonigarcia.webdrivermanager;
 	requires org.seleniumhq.selenium.firefox_driver;
 }

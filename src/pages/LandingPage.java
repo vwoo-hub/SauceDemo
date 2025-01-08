@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LandingPage extends BasePage {
 	
-	WebDriver driver;
+	private WebDriver driver;
 	
 	public LandingPage(WebDriver driver) {
 		super(driver);
@@ -16,13 +16,13 @@ public class LandingPage extends BasePage {
 	}
 	
 	@FindBy(id = "user-name")
-	WebElement userNameField;
+	public WebElement userNameField;
 	
 	@FindBy(id = "password")
-	WebElement passwordField;
+	public WebElement passwordField;
 	
 	@FindBy(id = "login-button")
-	WebElement loginButton;
+	public WebElement loginButton;
 	
 	public void typeUserNameField(String user) {
 		userNameField.sendKeys(user);
