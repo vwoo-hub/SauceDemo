@@ -16,7 +16,7 @@ public class ProductsPage extends BasePage {
 	}
 
 	@FindBy(xpath = "//div[@class='app_logo']")
-	public WebElement titleHeader;
+	private WebElement titleHeader;
 	
 	public String getTitleHeaderText() {
 		waitForWebElement(titleHeader);

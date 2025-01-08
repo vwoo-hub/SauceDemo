@@ -16,13 +16,19 @@ public class LandingPage extends BasePage {
 	}
 	
 	@FindBy(id = "user-name")
-	public WebElement userNameField;
+	private WebElement userNameField;
 	
 	@FindBy(id = "password")
-	public WebElement passwordField;
+	private WebElement passwordField;
 	
 	@FindBy(id = "login-button")
-	public WebElement loginButton;
+	private WebElement loginButton;
+	
+	@FindBy(css = ".error-button")
+	private WebElement errorMessageButton;
+	
+	@FindBy(css = ".error-message-container.error")
+	private WebElement errorMessageText;
 	
 	public void typeUserNameField(String user) {
 		userNameField.sendKeys(user);
@@ -34,5 +40,15 @@ public class LandingPage extends BasePage {
 	
 	public void tapLoginButton() {
 		loginButton.click();
+	}
+	
+	public void tapErrorMessageButton() {
+		errorMessageButton.click();
+		waitForElementToDisappear(errorMessageButton);
+	}
+	
+	public String getErrorMessageText() {
+		waitForWebElement(errorMessageText);
+		return errorMessageText.getText();
 	}
 }

@@ -19,4 +19,15 @@ public class SignInTest extends BaseTest {
 		
 		Assert.assertEquals("Swag Labs", productsPage.getTitleHeaderText());
 	}
+	
+	@Test(groups = {"SignIn"})
+	public void WhenWrongPasswordThenDisplayErrorMessage() {
+		LandingPage landingPage = new LandingPage(driver);
+		
+		landingPage.typeUserNameField("standard_user");
+		landingPage.typePasswordField("no_sauce");
+		landingPage.tapLoginButton();
+		Assert.assertEquals("Epic sadface: Username and password do not match any user in this service", landingPage.getErrorMessageText());
+		//landingPage.tapErrorMessageButton();
+	}
 }
