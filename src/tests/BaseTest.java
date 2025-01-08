@@ -18,7 +18,7 @@ public class BaseTest {
 	public WebDriver driver;
 	
 	@BeforeMethod(alwaysRun = true)
-	public WebDriver setUp() {
+	public WebDriver startDriver() {
 		
 		String browserName = "chrome";
 		

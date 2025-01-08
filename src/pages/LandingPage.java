@@ -28,7 +28,7 @@ public class LandingPage extends BasePage {
 	private WebElement errorMessageButton;
 	
 	@FindBy(css = ".error-message-container.error")
-	private WebElement errorMessageText;
+	private WebElement errorMessage;
 	
 	public void typeUserNameField(String user) {
 		userNameField.sendKeys(user);
@@ -48,7 +48,7 @@ public class LandingPage extends BasePage {
 	}
 	
 	public String getErrorMessageText() {
-		waitForWebElement(errorMessageText);
-		return errorMessageText.getText();
+		waitForWebElement(errorMessage);
+		return errorMessage.getText();
 	}
 }
