@@ -14,12 +14,8 @@ public class ProductsPage extends BasePage {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
-	@FindBy(xpath = "//div[@class='app_logo']")
-	private WebElement titleHeader;
 	
-	public String getTitleHeaderText() {
-		waitForWebElement(titleHeader);
-		return titleHeader.getText();
-	}
+	
+
+
 }

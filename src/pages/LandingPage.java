@@ -51,4 +51,9 @@ public class LandingPage extends BasePage {
 		waitForWebElement(errorMessage);
 		return errorMessage.getText();
 	}
+	
+	public String getLogInButtonText() {
+		waitForWebElement(loginButton);
+		return loginButton.getDomAttribute("value");
+	}
 }
