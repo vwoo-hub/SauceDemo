@@ -14,4 +14,5 @@ module SauceDemo {
 	opens pages to org.seleniumhq.selenium.support;
 	requires io.github.bonigarcia.webdrivermanager;
 	requires org.seleniumhq.selenium.firefox_driver;
+	requires com.google.common;
 }
