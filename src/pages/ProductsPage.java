@@ -1,6 +1,7 @@
 package pages;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import com.google.common.base.Functions;
 
@@ -28,8 +30,6 @@ public class ProductsPage extends BasePage {
 	private List<WebElement> itemPriceList;
 
 	public List<String> getItemList() {
-		// List<String> productNameList = itemNameList.stream().map(name -> name.getText().toLowerCase()).collect(Collectors.toList());
-		// System.out.println(Arrays.toString(productNameList.toArray()));
 		return itemNameList.stream().map(name -> name.getText().toLowerCase()).collect(Collectors.toList());
 	}
 	
@@ -42,8 +42,22 @@ public class ProductsPage extends BasePage {
 		return expectedItemNameList;
 	}
 	
+	public List<String> expectedItemListZToA() {
+		List<String> expectedItemNameList = getItemList().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+		return expectedItemNameList;
+	}
+	
 	public List<String> expectedPriceListLowToHigh() {
 		List<Double> expectedItemNameList = getItemPriceList().stream().map(Double::parseDouble).sorted().collect(Collectors.toList());
 		return expectedItemNameList.stream().map(Functions.toStringFunction()).collect(Collectors.toList());
+	}
+	
+	public List<String> expectedPriceListHighToLow() {
+		List<Double> expectedItemNameList = getItemPriceList().stream().map(Double::parseDouble).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+		return expectedItemNameList.stream().map(Functions.toStringFunction()).collect(Collectors.toList());
+	}
+	
+	public void verifyProductOrder(List<String> expectedProducts, List<String> actualProducts) {
+		Assert.assertEquals(expectedProducts, actualProducts);
 	}
 }

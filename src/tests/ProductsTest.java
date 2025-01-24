@@ -1,5 +1,7 @@
 package tests;
 
+import java.util.List;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,10 +27,12 @@ public class ProductsTest extends BaseTest {
 	public void WhenViewingProductsThenVerifyProductsSortedByAcendingAlphabet() {
 		landingPage.logIn("standard_user", "secret_sauce");
 		
-		System.out.print(productsPage.getItemList() + "\n");
-		System.out.print(productsPage.expectedItemListAToZ() + "\n");
-		System.out.print(productsPage.getItemPriceList() + "\n");
+		List<String> expectedProductList = productsPage.expectedItemListAToZ();
+		List<String> actualProductList = productsPage.getItemList();
 		
-		System.out.print(productsPage.expectedPriceListLowToHigh() + "\n");
+//		System.out.print(productsPage.expectedItemListAToZ() + "\n");
+//		System.out.print(productsPage.getItemList() + "\n");
+		
+		Assert.assertEquals(expectedProductList, actualProductList);
 	}
 }
