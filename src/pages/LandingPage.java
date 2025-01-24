@@ -30,8 +30,8 @@ public class LandingPage extends BasePage {
 	@FindBy(css = ".error-message-container.error")
 	private WebElement errorMessage;
 	
-	public void typeUserNameField(String user) {
-		userNameField.sendKeys(user);
+	public void typeUserNameField(String userName) {
+		userNameField.sendKeys(userName);
 	}
 	
 	public void typePasswordField(String password) {
@@ -40,6 +40,12 @@ public class LandingPage extends BasePage {
 	
 	public void tapLoginButton() {
 		loginButton.click();
+	}
+	
+	public void logIn(String userName, String password) {
+		typeUserNameField(userName);
+		typePasswordField(password);
+		tapLoginButton();
 	}
 	
 	public void tapErrorMessageButton() {

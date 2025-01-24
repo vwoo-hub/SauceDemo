@@ -22,19 +22,15 @@ public class SignInTest extends BaseTest {
 	}
 	
 	@Test(groups = {"SignIn"})
-	public void WhenValidCredentialsThenLogInSuccessfully() throws InterruptedException {
-		landingPage.typeUserNameField("standard_user");
-		landingPage.typePasswordField("secret_sauce");
-		landingPage.tapLoginButton();
+	public void WhenValidCredentialsThenLogInSuccessfully() {
+		landingPage.logIn("standard_user", "secret_sauce");
 		
 		Assert.assertEquals(productsPage.getTitleHeaderText(), "Swag Labs");
 	}
 	
 	@Test(groups = {"SignIn"})
 	public void WhenWrongPasswordThenDisplayErrorMessage() {
-		landingPage.typeUserNameField("standard_user");
-		landingPage.typePasswordField("no_sauce");
-		landingPage.tapLoginButton();
+		landingPage.logIn("standard_user", "no_sauce");
 		
 		Assert.assertEquals(landingPage.getErrorMessageText(), "Epic sadface: Username and password do not match any user in this service");
 	}
@@ -57,24 +53,19 @@ public class SignInTest extends BaseTest {
 	
 	@Test(groups = {"SignIn"})
 	public void WhenLogInWithLockedOutUserThenDisplayErrorMessage() {
-		landingPage.typeUserNameField("locked_out_user");
-		landingPage.typePasswordField("secret_sauce");
-		landingPage.tapLoginButton();
+		landingPage.logIn("locked_out_user", "no_sauce");
 		
 		Assert.assertEquals(landingPage.getErrorMessageText(), "Epic sadface: Sorry, this user has been locked out.");
 	}
 	
 	@Test(groups = {"SignIn"})
 	public void WhenLoggedInThenLogOutSuccessfully() {
-		landingPage.typeUserNameField("standard_user");
 		landingPage.typePasswordField("secret_sauce");
-		landingPage.tapLoginButton();
 		
 		productsPage.tapHamburgerButton();
 		
 		sideBar.tapLogOutButton();
 		
 		Assert.assertEquals(landingPage.getLogInButtonText(), "Login");
-		
 	}
 }
