@@ -23,16 +23,51 @@ public class ProductsTest extends BaseTest {
         sideBar = new SideBar(driver);
 	}
 	
-	@Test(groups = {"SignIn"})
+	@Test(groups = {"Product"})
 	public void WhenViewingProductsThenVerifyProductsSortedByAcendingAlphabet() {
 		landingPage.logIn("standard_user", "secret_sauce");
 		
 		List<String> expectedProductList = productsPage.expectedItemListAToZ();
 		List<String> actualProductList = productsPage.getItemList();
 		
-//		System.out.print(productsPage.expectedItemListAToZ() + "\n");
-//		System.out.print(productsPage.getItemList() + "\n");
+		Assert.assertEquals(expectedProductList, actualProductList);
+	}
+	
+	@Test(groups = {"Product"})
+	public void WhenViewingProductsThenVerifyProductsSortedByDescendingAlphabet() {
+		landingPage.logIn("standard_user", "secret_sauce");
+		
+		productsPage.selectDropdownOption("Name (Z to A)");
+		
+		List<String> expectedProductList = productsPage.expectedItemListZToA();
+		List<String> actualProductList = productsPage.getItemList();
 		
 		Assert.assertEquals(expectedProductList, actualProductList);
+	}
+	
+	@Test(groups = {"Product"})
+	public void WhenViewingProductsThenVerifyProductsSortedByLowToHighPrice() {
+		landingPage.logIn("standard_user", "secret_sauce");
+		
+		productsPage.selectDropdownOption("Price (low to high)");
+		
+		List<String> expectedProductList = productsPage.expectedPriceListLowToHigh();
+		List<String> actualItemPriceList = productsPage.getItemPriceList();
+		
+		
+		Assert.assertEquals(expectedProductList, actualItemPriceList);
+	}
+	
+	@Test(groups = {"Product"})
+	public void WhenViewingProductsThenVerifyProductsSortedByHighToLowPrice() {
+		landingPage.logIn("standard_user", "secret_sauce");
+		
+		productsPage.selectDropdownOption("Price (high to low)");
+		
+		List<String> expectedProductList = productsPage.expectedPriceListHighToLow();
+		List<String> actualItemPriceList = productsPage.getItemPriceList();
+		
+		
+		Assert.assertEquals(expectedProductList, actualItemPriceList);
 	}
 }

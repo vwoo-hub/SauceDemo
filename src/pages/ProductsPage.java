@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.google.common.base.Functions;
@@ -28,6 +29,18 @@ public class ProductsPage extends BasePage {
 	
 	@FindBy(className = "inventory_item_price")
 	private List<WebElement> itemPriceList;
+	
+	@FindBy(css = ".product_sort_container")
+	private WebElement dropDownButton;
+	
+	public void tapDropDownButton() {
+		dropDownButton.click();
+	}
+	
+	public void selectDropdownOption(String visibleText) {
+        Select dropdown = new Select(dropDownButton);
+        dropdown.selectByVisibleText(visibleText); 
+    }
 
 	public List<String> getItemList() {
 		return itemNameList.stream().map(name -> name.getText().toLowerCase()).collect(Collectors.toList());
@@ -55,9 +68,5 @@ public class ProductsPage extends BasePage {
 	public List<String> expectedPriceListHighToLow() {
 		List<Double> expectedItemNameList = getItemPriceList().stream().map(Double::parseDouble).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
 		return expectedItemNameList.stream().map(Functions.toStringFunction()).collect(Collectors.toList());
-	}
-	
-	public void verifyProductOrder(List<String> expectedProducts, List<String> actualProducts) {
-		Assert.assertEquals(expectedProducts, actualProducts);
 	}
 }
