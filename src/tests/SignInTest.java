@@ -53,14 +53,14 @@ public class SignInTest extends BaseTest {
 	
 	@Test(groups = {"SignIn"})
 	public void WhenLogInWithLockedOutUserThenDisplayErrorMessage() {
-		landingPage.logIn("locked_out_user", "no_sauce");
+		landingPage.logIn("locked_out_user", "secret_sauce");
 		
 		Assert.assertEquals(landingPage.getErrorMessageText(), "Epic sadface: Sorry, this user has been locked out.");
 	}
 	
 	@Test(groups = {"SignIn"})
 	public void WhenLoggedInThenLogOutSuccessfully() {
-		landingPage.typePasswordField("secret_sauce");
+		landingPage.logIn("standard_user", "secret_sauce");
 		
 		productsPage.tapHamburgerButton();
 		
