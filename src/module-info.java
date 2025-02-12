@@ -18,4 +18,5 @@ module SauceDemo {
 	requires com.google.common;
 	requires extentreports;
 	requires org.apache.commons.io;
+	requires org.seleniumhq.selenium.edge_driver;
 }

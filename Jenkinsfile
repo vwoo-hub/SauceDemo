@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                sh 'mvn test -P Regression -Dbrowser=chromeheadless'
+                sh 'mvn test -P Regression -D browser=chromeheadless'
             }
         }
     }
