@@ -1,8 +1,10 @@
 package tests;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
@@ -22,9 +24,13 @@ public class BaseTest {
 	public WebDriver driver;
 	
 	@BeforeMethod(alwaysRun = true)
-	public WebDriver startDriver() {
+	public WebDriver startDriver() throws IOException {
 		
-		String browserName = "chrome";
+		Properties prop = new Properties();
+		
+		FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "//src//resources//GlobalData.properties");
+		prop.load(fis);
+		String browserName = System.getProperty("browser") != null ? System.getProperty("browser") : prop.getProperty("browser");
 		
 		if(browserName.contains("chrome")) {
 			ChromeOptions options = new ChromeOptions();
