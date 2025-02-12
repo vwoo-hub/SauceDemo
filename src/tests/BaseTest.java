@@ -13,6 +13,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -45,6 +46,11 @@ public class BaseTest {
 		else if(browserName.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
+		}
+		
+		else if(browserName.equalsIgnoreCase("edge")) {
+			System.setProperty("webdriver.edge.driver", "edge.exe");
+			driver = new EdgeDriver();
 		}
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
