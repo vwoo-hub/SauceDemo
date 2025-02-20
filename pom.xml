@@ -12,107 +12,92 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
   </properties>
   
   <dependencies>
+	<!-- Selenium -->
 	<dependency>	
 	    <groupId>org.seleniumhq.selenium</groupId>
 	    <artifactId>selenium-java</artifactId>
 	    <version>4.28.1</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+
+	<!-- TestNG -->
 	<dependency>
 	    <groupId>org.testng</groupId>
 	    <artifactId>testng</artifactId>
 	    <version>7.10.2</version>
 	    <scope>compile</scope>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/dev.failsafe/failsafe -->
+
+	<!-- Failsafe -->
 	<dependency>
 	    <groupId>dev.failsafe</groupId>
 	    <artifactId>failsafe</artifactId>
 	    <version>3.3.2</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+
+	<!-- WebDriverManager -->
 	<dependency>
 	    <groupId>io.github.bonigarcia</groupId>
 	    <artifactId>webdrivermanager</artifactId>
 	    <version>5.9.2</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+
+	<!-- Jackson -->
 	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-databind</artifactId>
 	    <version>2.18.2</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+
+	<!-- Extent Reports -->
 	<dependency>
 	    <groupId>com.aventstack</groupId>
 	    <artifactId>extentreports</artifactId>
 	    <version>5.1.2</version>
 	</dependency>
-	<dependency>
-	    <groupId>org.slf4j</groupId>
-	    <artifactId>slf4j-api</artifactId>
-	    <version>2.0.9</version>
-	</dependency>
-	<dependency>
-	    <groupId>org.slf4j</groupId>
-	    <artifactId>slf4j-simple</artifactId>
-	    <version>2.0.9</version>
-	</dependency>
+
+	<!-- Log4j and SLF4J Fix -->
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>2.22.1</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>2.22.1</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j2-impl</artifactId>
+        <version>2.22.1</version>
+    </dependency>
   </dependencies>
-  <profiles>
-    <profile>
-      <id>Regression</id>
-		  <build>
-		    <pluginManagement>
-		      <plugins>     
-			    <plugin>
-			      <groupId>org.apache.maven.plugins</groupId>
-			      <artifactId>maven-surefire-plugin</artifactId>
-			      <version>3.5.2</version>
-			      <configuration>
-			        <suiteXmlFiles>
-			          <suiteXmlFile>testSuites/testng.xml</suiteXmlFile>
-			        </suiteXmlFiles>
-			      </configuration>
-			    </plugin>
-		      </plugins>
-		    </pluginManagement>
-		  </build>     
-    </profile>
-    <profile>
-      <id>Smoke</id>
-		  <build>
-		    <pluginManagement>
-		      <plugins>     
-			    <plugin>
-			      <groupId>org.apache.maven.plugins</groupId>
-			      <artifactId>maven-surefire-plugin</artifactId>
-			      <version>3.5.2</version>
-			      <configuration>
-			        <suiteXmlFiles>
-			          <suiteXmlFile>testSuites/testng.xml</suiteXmlFile>
-			        </suiteXmlFiles>
-			      </configuration>
-			    </plugin>
-		      </plugins>
-		    </pluginManagement>
-		  </build>     
-    </profile>
-  </profiles>
- 
+
   <build>
-    <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
           <release>17</release>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.2</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testSuites/testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
         </configuration>
       </plugin>
     </plugins>

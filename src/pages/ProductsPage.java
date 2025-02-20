@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +26,7 @@ public class ProductsPage extends BasePage {
 	}
 	
 	@FindBy(className = "inventory_item_name")
-	private List<WebElement> itemNameList;
+	private List<WebElement> itemNameList; 
 	
 	@FindBy(className = "inventory_item_price")
 	private List<WebElement> itemPriceList;
@@ -35,6 +36,11 @@ public class ProductsPage extends BasePage {
 	
 	public void tapDropDownButton() {
 		dropDownButton.click();
+	}
+	
+	public void tapProductName(String productName) {
+		String xpath = "//div[@data-test='inventory-item-name' and text()='" + productName + "']";
+		driver.findElement(By.xpath(xpath)).click();
 	}
 	
 	public void selectDropdownOption(String visibleText) {
