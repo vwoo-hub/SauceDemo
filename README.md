@@ -1,6 +1,6 @@
 # Selenium automation framework for SauceDemo
 
-A Selenium automation framework for the SauceDemo website that uses TestNG. 
+A Selenium automation framework for the SauceDemo website that uses TestNG. Demo website found here: https://www.saucedemo.com/
 
 * Prereqs (for Mac):
   * Java (JDK 11+)
