@@ -36,7 +36,6 @@ public class CartTest extends BaseTest {
 		
 		Assert.assertEquals(cartPage.getProductNameFromCart("Sauce Labs Backpack"), "Sauce Labs Backpack");
 		Assert.assertEquals(cartPage.getProductNameFromCart("Sauce Labs Bike Light"), "Sauce Labs Bike Light");
-		Thread.sleep(100000);
 	}
 	
 }
