@@ -65,7 +65,7 @@ public class SignInTest extends BaseTest {
 		productsPage.tapHamburgerButton();
 		
 		sideBar.tapLogOutButton();
-		
+
 		Assert.assertEquals(landingPage.getLogInButtonText(), "Login");
 	}
 }

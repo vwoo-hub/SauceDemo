@@ -1,5 +1,6 @@
 package pages;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -25,6 +26,24 @@ public class ProductsPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
+	@FindBy(id = "add-to-cart-sauce-labs-backpack")
+	private WebElement addBackpackButton;
+	
+	@FindBy(id = "add-to-cart-sauce-labs-bike-light")
+	private WebElement addBikeLightButton;
+	
+	@FindBy(id = "add-to-cart-sauce-labs-fleece-jacket")
+	private WebElement addFleeceJacketButton;
+	
+	@FindBy(id = "add-to-cart-sauce-labs-bolt-t-shirt")
+	private WebElement addShirtButton;
+	
+	@FindBy(id = "add-to-cart-sauce-labs-onesie")
+	private WebElement addOnesieButton;
+	
+	@FindBy(id = "add-to-cart-test.allthethings()-t-shirt-(red)")
+	private WebElement addAllTheThingsShirtButton;
+	
 	@FindBy(className = "inventory_item_name")
 	private List<WebElement> itemNameList; 
 	
@@ -34,6 +53,8 @@ public class ProductsPage extends BasePage {
 	@FindBy(css = ".product_sort_container")
 	private WebElement dropDownButton;
 	
+	private List<String> addedProductsList = new ArrayList<>();
+	
 	public void tapDropDownButton() {
 		dropDownButton.click();
 	}
@@ -42,6 +63,43 @@ public class ProductsPage extends BasePage {
 		String xpath = "//div[@data-test='inventory-item-name' and text()='" + productName + "']";
 		driver.findElement(By.xpath(xpath)).click();
 	}
+	
+	public void addProductToCart(String productName) {
+		switch(productName) {
+			case "Sauce Labs Backpack": {
+				addBackpackButton.click();
+				break;
+			}
+			case "Sauce Labs Bike Light": {
+				addBikeLightButton.click();
+				break;
+			}
+			case "Sauce Labs Bolt T-Shirt": {
+				addShirtButton.click();
+				break;
+			}
+			case "Sauce Labs Fleece Jacket": {
+				addFleeceJacketButton.click();
+				break;
+			}
+			case "Sauce Labs Onesie": {
+				addOnesieButton.click();
+				break;
+			}
+			case "Test.allTheThings() T-Shirt (Red)": {
+				addAllTheThingsShirtButton.click();
+				break;
+			}
+			default:
+	            throw new IllegalArgumentException("Unknown product name: " + productName);
+		}
+		
+		addedProductsList.add(productName);
+	}
+	
+	public List<String> getAddedProducts() {
+		return new ArrayList<>(addedProductsList);  // Return a copy to avoid modification
+    }
 	
 	public void selectDropdownOption(String visibleText) {
         Select dropdown = new Select(dropDownButton);
