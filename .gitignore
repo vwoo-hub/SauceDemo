@@ -3,3 +3,5 @@ reports/
 logs/
 bin/
 test-output/
+allure-report/
+allure-results/
