@@ -35,6 +35,18 @@ public class CartPage extends BasePage {
 	@FindBy(id = "item_4_title_link")
 	private WebElement backpackLabel;
 	
+	@FindBy(id = "item_2_title_link")
+	private WebElement onesieLabel;
+	
+	@FindBy(id = "item_1_title_link")
+	private WebElement shirtLabel;
+	
+	@FindBy(id = "item_5_title_link")
+	private WebElement fleeceJacketLabel;
+
+	@FindBy(id = "item_3_title_link")
+	private WebElement alltheThingsShirtLabel;
+	
 	@FindBy(id = "remove-sauce-labs-backpack")
 	private WebElement removeBackpackButton; 
 	
@@ -80,16 +92,47 @@ public class CartPage extends BasePage {
 				return bikeLightLabel.getText();
 			}
 			case "Sauce Labs Bolt T-Shirt": {
-				return bikeLightLabel.getText();
+				return shirtLabel.getText();
 			}
 			case "Sauce Labs Fleece Jacket": {
-				return bikeLightLabel.getText();
+				return fleeceJacketLabel.getText();
 			}
 			case "Sauce Labs Onesie": {
-				return bikeLightLabel.getText();
+				return onesieLabel.getText();
 			}
 			case "Test.allTheThings() T-Shirt (Red)": {
-				return bikeLightLabel.getText();
+				return alltheThingsShirtLabel.getText();
+			}
+			default:
+            throw new IllegalArgumentException("Unknown product name: " + productName);
+		}
+	}
+	
+	public void tapProductNameButton(String productName) {
+		switch (productName) {
+			case "Sauce Labs Backpack": {
+				backpackLabel.click();
+				break;
+			}
+			case "Sauce Labs Bike Light": {
+				bikeLightLabel.click();
+				break;
+			}
+			case "Sauce Labs Bolt T-Shirt": {
+				shirtLabel.click();
+				break;
+			}
+			case "Sauce Labs Fleece Jacket": {
+				fleeceJacketLabel.click();
+				break;
+			}
+			case "Sauce Labs Onesie": {
+				onesieLabel.click();
+				break;
+			}
+			case "Test.allTheThings() T-Shirt (Red)": {
+				alltheThingsShirtLabel.click();
+				break;
 			}
 			default:
             throw new IllegalArgumentException("Unknown product name: " + productName);

@@ -133,4 +133,29 @@ public class ProductsPage extends BasePage {
 		List<Double> expectedItemNameList = getItemPriceList().stream().map(Double::parseDouble).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
 		return expectedItemNameList.stream().map(Functions.toStringFunction()).collect(Collectors.toList());
 	}
+	
+	public boolean viewProductAddButton(String productName) {
+		switch(productName) {
+			case "Sauce Labs Backpack": {
+				return addBackpackButton.isDisplayed();
+			}
+			case "Sauce Labs Bike Light": {
+				return addBikeLightButton.isDisplayed();	
+			}
+			case "Sauce Labs Bolt T-Shirt": {
+				addShirtButton.isDisplayed();		
+			}
+			case "Sauce Labs Fleece Jacket": {
+				return addFleeceJacketButton.isDisplayed();
+			}
+			case "Sauce Labs Onesie": {
+				return addOnesieButton.isDisplayed();	
+			}
+			case "Test.allTheThings() T-Shirt (Red)": {
+				return addAllTheThingsShirtButton.isDisplayed();			
+			}
+			default:
+	            throw new IllegalArgumentException("Unknown product name: " + productName);
+		}
+	}
 }
