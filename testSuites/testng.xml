@@ -14,4 +14,14 @@
   	  <class name="tests.ProductsTest"></class>
   	</classes>
   </test> <!-- Test -->
+  <test thread-count="5" name="Product Details Test">
+  	<classes>
+  	  <class name="tests.ProductDetailsTest"></class>
+  	</classes>
+  </test> <!-- Test -->
+  <test thread-count="5" name="Cart Test">
+  	<classes>
+  	  <class name="tests.CartTest"></class>
+  	</classes>
+  </test> <!-- Test -->
 </suite> <!-- Suite -->
