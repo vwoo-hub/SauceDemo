@@ -34,13 +34,11 @@ public class YourInformationTest extends BaseTest {
 	
 	@Test(groups = {"Your Information"})
 	public void whenCheckingOutWithoutFirstNameThenShowsErrorMessage() throws InterruptedException {
-		String expectedItemNameOne = "Sauce Labs Fleece Jacket";
-		String expectedItemNameTwo = "Test.allTheThings() T-Shirt (Red)";
+		String expectedItem = "Sauce Labs Fleece Jacket";
 		
 		landingPage.logIn("standard_user", "secret_sauce");
 
-		productsPage.addProductToCart(expectedItemNameOne);
-		productsPage.addProductToCart(expectedItemNameTwo);
+		productsPage.addProductToCart(expectedItem);
 		productsPage.tapShoppingCartButton();
 		
 		cartPage.tapCheckoutButton();
@@ -48,5 +46,42 @@ public class YourInformationTest extends BaseTest {
 		yourInformationPage.tapContinueButton();
 		
 		Assert.assertEquals(yourInformationPage.getErrorLabel(), "Error: First Name is required");	
+	}
+	
+	
+	@Test(groups = {"Your Information"})
+	public void whenCheckingOutWithoutLastNameThenShowsErrorMessage() throws InterruptedException {
+		String expectedItem = "Test.allTheThings() T-Shirt (Red)";	
+		
+		landingPage.logIn("standard_user", "secret_sauce");
+
+		productsPage.addProductToCart(expectedItem);
+		productsPage.tapShoppingCartButton();
+		
+		cartPage.tapCheckoutButton();
+		
+		yourInformationPage.typeFirstNameTextField("Chris");
+		yourInformationPage.tapContinueButton();
+		
+		Assert.assertEquals(yourInformationPage.getErrorLabel(), "Error: Last Name is required");	
+	}
+	
+	
+	@Test(groups = {"Your Information"})
+	public void whenCheckingOutWithoutZipCodeThenShowsErrorMessage() throws InterruptedException {
+		String expectedItem = "Sauce Labs Bolt T-Shirt";
+		
+		landingPage.logIn("standard_user", "secret_sauce");
+
+		productsPage.addProductToCart(expectedItem);
+		productsPage.tapShoppingCartButton();
+		
+		cartPage.tapCheckoutButton();
+		
+		yourInformationPage.typeFirstNameTextField("Chris");
+		yourInformationPage.typeLastNameTextField("Wilson");
+		yourInformationPage.tapContinueButton();
+		
+		Assert.assertEquals(yourInformationPage.getErrorLabel(), "Error: Postal Code is required");	
 	}
 }
