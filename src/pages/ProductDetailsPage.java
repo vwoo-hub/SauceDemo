@@ -33,6 +33,9 @@ public class ProductDetailsPage extends BasePage {
 	@FindBy(id = "add-to-cart")
 	private WebElement addToCartButton;
 	
+	@FindBy(id = "back-to-products")
+	private WebElement backToProductsButton;
+	
 	public String getItemName() {
 		return itemName.getText();
 	}
@@ -43,5 +46,9 @@ public class ProductDetailsPage extends BasePage {
 	
 	public void tapAddToCartButton() {
 		addToCartButton.click();
+	}
+	
+	public void tapBackToProductsButton() {
+		backToProductsButton.click();
 	}
 }

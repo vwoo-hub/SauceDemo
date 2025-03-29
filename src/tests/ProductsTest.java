@@ -54,7 +54,6 @@ public class ProductsTest extends BaseTest {
 		List<String> expectedProductList = productsPage.expectedPriceListLowToHigh();
 		List<String> actualItemPriceList = productsPage.getItemPriceList();
 		
-		
 		Assert.assertEquals(expectedProductList, actualItemPriceList);
 	}
 	
@@ -67,7 +66,14 @@ public class ProductsTest extends BaseTest {
 		List<String> expectedProductList = productsPage.expectedPriceListHighToLow();
 		List<String> actualItemPriceList = productsPage.getItemPriceList();
 		
-		
 		Assert.assertEquals(expectedProductList, actualItemPriceList);
+	}
+	
+	@Test(groups = {"Product"})
+	public void whenViewingProductsThenAddAllProductsToCart() throws InterruptedException {
+		landingPage.logIn("standard_user", "secret_sauce");
+		
+		productsPage.addAllProductsToCart();
+		productsPage.viewAllProductsRemoveButtons();
 	}
 }

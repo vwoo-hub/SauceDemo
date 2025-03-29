@@ -37,7 +37,22 @@ public class ProductDetailsTest extends BaseTest {
 
 		productsPage.tapProductName(expectedItemName);
 
-		Assert.assertEquals(productDetailsPage.getItemName(), expectedItemName, "Item name does not match!");
-		Assert.assertEquals(productDetailsPage.getItemPrice(), expectedItemPrice, "Item price does not match!");
+		Assert.assertEquals(productDetailsPage.getItemName(), expectedItemName);
+		Assert.assertEquals(productDetailsPage.getItemPrice(), expectedItemPrice);
+	}
+	
+
+	@Test(groups = { "Product" })
+	public void whenAddProductThenShowsAddedButtonOnProductsPage() throws InterruptedException {
+		String expectedItemName = "Sauce Labs Backpack";
+
+		landingPage.logIn("standard_user", "secret_sauce");
+
+		productsPage.tapProductName(expectedItemName);
+		
+		productDetailsPage.tapAddToCartButton();
+		productDetailsPage.tapBackToProductsButton();
+		
+		Assert.assertTrue(productsPage.viewProductRemoveButton(expectedItemName));
 	}
 }

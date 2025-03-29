@@ -44,6 +44,24 @@ public class ProductsPage extends BasePage {
 	@FindBy(id = "add-to-cart-test.allthethings()-t-shirt-(red)")
 	private WebElement addAllTheThingsShirtButton;
 	
+	@FindBy(id = "remove-sauce-labs-backpack")
+	private WebElement removeBackpackButton;
+	
+	@FindBy(id = "remove-sauce-labs-bike-light")
+	private WebElement removeBikeLightButton;
+	
+	@FindBy(id = "remove-sauce-labs-fleece-jacket")
+	private WebElement removeFleeceJacketButton;
+	
+	@FindBy(id = "remove-sauce-labs-bolt-t-shirt")
+	private WebElement removeShirtButton;
+	
+	@FindBy(id = "remove-sauce-labs-onesie")
+	private WebElement removeOnesieButton;
+	
+	@FindBy(id = "remove-test.allthethings()-t-shirt-(red)")
+	private WebElement removeAllTheThingsShirtButton;
+	
 	@FindBy(className = "inventory_item_name")
 	private List<WebElement> itemNameList; 
 	
@@ -98,7 +116,7 @@ public class ProductsPage extends BasePage {
 	}
 	
 	public List<String> getAddedProducts() {
-		return new ArrayList<>(addedProductsList);  // Return a copy to avoid modification
+		return new ArrayList<>(addedProductsList);
     }
 	
 	public void selectDropdownOption(String visibleText) {
@@ -108,6 +126,10 @@ public class ProductsPage extends BasePage {
 
 	public List<String> getItemList() {
 		return itemNameList.stream().map(name -> name.getText().toLowerCase()).collect(Collectors.toList());
+	}
+	
+	public List<String> getItemListOriginal() {
+		return itemNameList.stream().map(name -> name.getText()).collect(Collectors.toList());
 	}
 	
 	public List<String> getItemPriceList() {
@@ -143,7 +165,7 @@ public class ProductsPage extends BasePage {
 				return addBikeLightButton.isDisplayed();	
 			}
 			case "Sauce Labs Bolt T-Shirt": {
-				addShirtButton.isDisplayed();		
+				return addShirtButton.isDisplayed();		
 			}
 			case "Sauce Labs Fleece Jacket": {
 				return addFleeceJacketButton.isDisplayed();
@@ -158,4 +180,48 @@ public class ProductsPage extends BasePage {
 	            throw new IllegalArgumentException("Unknown product name: " + productName);
 		}
 	}
+	
+	public boolean viewProductRemoveButton(String productName) {
+		switch(productName) {
+			case "Sauce Labs Backpack": {
+				return removeBackpackButton.isDisplayed();
+			}
+			case "Sauce Labs Bike Light": {
+				return removeBikeLightButton.isDisplayed();	
+			}
+			case "Sauce Labs Bolt T-Shirt": {
+				return removeShirtButton.isDisplayed();		
+			}
+			case "Sauce Labs Fleece Jacket": {
+				return removeFleeceJacketButton.isDisplayed();
+			}
+			case "Sauce Labs Onesie": {
+				return removeOnesieButton.isDisplayed();	
+			}
+			case "Test.allTheThings() T-Shirt (Red)": {
+				return removeAllTheThingsShirtButton.isDisplayed();			
+			}
+			default:
+	            throw new IllegalArgumentException("Unknown product name: " + productName);
+		}
+	}
+	
+	public void addAllProductsToCart() {
+		List<String> productList = getItemListOriginal();
+		
+		for(String product: productList) {
+			addProductToCart(product);
+		}
+	}
+	
+	
+	public void viewAllProductsRemoveButtons() {
+		List<String> productList = getItemListOriginal();
+		
+		for(String product: productList) {
+			viewProductRemoveButton(product);
+		}
+	}
+	
+	
 }
