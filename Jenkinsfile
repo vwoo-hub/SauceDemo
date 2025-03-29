@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                sh 'mvn test -P Regression -D browser=chromeheadless'
+                sh 'mvn test -D browser=chromeheadless'
             }
         }
         stage('Generate Allure Report') {
