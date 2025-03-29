@@ -9,11 +9,11 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/vwoo-hub/SauceDemo.git'
             }
         }
-        stage('Install Dependencies') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
+//        stage('Install Dependencies') {
+//            steps {
+//                sh 'mvn clean install'
+//            }
+//        }
         stage('Run Tests') {
             steps {
                 sh 'mvn test -D browser=chromeheadless'
