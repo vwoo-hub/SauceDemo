@@ -24,4 +24,14 @@
   	  <class name="tests.CartTest"></class>
   	</classes>
   </test> <!-- Test -->
+  <test thread-count="5" name="Your Information Test">
+  	<classes>
+  	  <class name="tests.YourInformationTest"></class>
+  	</classes>
+  </test> <!-- Test -->
+  <test thread-count="5" name="Checkout Overview Test">
+  	<classes>
+  	  <class name="tests.CheckoutOverviewTest"></class>
+  	</classes>
+  </test> <!-- Test -->
 </suite> <!-- Suite -->
