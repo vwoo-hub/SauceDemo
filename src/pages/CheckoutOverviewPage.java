@@ -32,6 +32,12 @@ public class CheckoutOverviewPage extends BasePage {
 	@FindBy(css = ".summary_total_label")
 	private WebElement totalPrice;
 	
+	@FindBy(id = "cancel")
+	private WebElement cancelButton;
+	
+	@FindBy(id = "finish")
+	private WebElement finishButton;
+	
 	
 	public List<String> getItemPriceList() {
 		return itemPriceList.stream().map(price -> price.getText().substring(1)).collect(Collectors.toList());
@@ -80,5 +86,13 @@ public class CheckoutOverviewPage extends BasePage {
 		Matcher matcher = pattern.matcher(priceText);
 		
 		return matcher.find() ? matcher.group() : "";
+	}
+	
+	public void tapCancelButton() {
+		cancelButton.click();
+	}
+	
+	public void tapFinishButton() {
+		finishButton.click();
 	}
 }
